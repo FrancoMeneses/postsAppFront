@@ -12,14 +12,13 @@ export function ContainerContext({children}) {
   
   const [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    const get = async () => {
-      const data = await getPosts()
-      console.log(data)
-      setPosts(data)
-    }
-    get()
-  },[])
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const data = await getPosts()
+  //     setPosts(data)
+  //   }
+  //   get()
+  // },[])
 
 
   return <postsContext.Provider value={{

@@ -9,7 +9,6 @@ export function Home () {
       <div className="container-data">
         <div>
           <button>Agregar</button>
-          {console.log(posts)}
           {posts.map((post) => {
             return(
               <div key={post._id}>
