@@ -2,18 +2,20 @@ import { usePosts } from "../context/appContext"
 
 export function Home () {
 
-  const { posts, setPosts } = usePosts()
+  const { posts } = usePosts()
 
   return(
     <div className="container-home">
       <div className="container-data">
         <div>
-          <button onClick={() => {
-            setPosts([...posts, 'Adios'])
-          }}>Agregar</button>
-          {posts.map((post, i) => {
+          <button>Agregar</button>
+          {console.log(posts)}
+          {posts.map((post) => {
             return(
-              <li key={i}>{post}</li>
+              <div key={post._id}>
+                <h2>{post.title}</h2>
+                <li>{post.body}</li>
+              </div>
             )
           })}
         </div>
