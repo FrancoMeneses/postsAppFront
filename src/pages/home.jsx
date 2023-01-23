@@ -11,7 +11,7 @@ export function Home () {
       <div className="container-data">
         <div className="header-home">
           <h2>Posts</h2>
-          <NavLink to='/newform'>
+          <NavLink to='/newpost'>
             <VscNewFile />
           </NavLink>
         </div>

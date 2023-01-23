@@ -36,15 +36,15 @@ export async function createPostRequest(data) {
   // }
   try {
     const form = new FormData()
-    for(let key in data){
+    for (let key in data) {
       form.append(key, data[key])
     }
     const res = await fetch(`https://postsapp.onrender.com/posts`, {
       method: 'POST',
       body: form
     })
-    console.log(res)
-    return res
+    let post = await res.json()
+    return post
   } catch (error) {
     console.log(error)
   }
