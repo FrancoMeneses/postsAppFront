@@ -1,7 +1,8 @@
-import { Formik, Form, Field } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik"
 import { TAGS } from "./info"
 import { usePosts } from "../context/appContext"
 import { useNavigate } from "react-router-dom"
+import * as yup from 'yup'
 
 export function NewForm() {
 
@@ -17,14 +18,21 @@ export function NewForm() {
           body: '',
           category: ''
         }}
-        onSubmit={ async (values, actions) => {
+        validationSchema={yup.object({
+          title: yup.string().required('Title is required'),
+          author: yup.string().required('Author is required'),
+          body: yup.string().required('Body is required'),
+          category: yup.string().required('Select a tag')
+        })}
+        onSubmit={async (values, actions) => {
           const res = await createPost(values)
-          if(res?.status === 200 ) {
-            // setPosts([...posts, ])
-            // alert('Post created')
-            // navigate('/')
-          } 
-          if(res?.status === 500 ) alert('There is a problem with the post')
+          console.log(res)
+          if (res._id) {
+            setPosts([...posts, res])
+            alert('Post created')
+            navigate('/')
+          }
+          if (!res._id) alert('There is a problem with the post')
         }}
       >
         {({ handleSubmit }) => (
@@ -32,29 +40,40 @@ export function NewForm() {
             <div className="formik-head">
               <div className="formik-head-div">
                 <label htmlFor="title">Title</label>
-                <Field name='title' placeholder='Title' className='formik-form-field'></Field>
+                <div>
+                  <Field name='title' placeholder='Title' className='formik-form-field'></Field>
+                  <ErrorMessage component="div" name="title" className="formik-error" />
+                </div>
               </div>
               <div className="formik-head-div-A-C">
                 <div className="formik-author">
                   <label htmlFor="author">Author</label>
-                  <Field name='author' placeholder='Author' className='formik-form-field-A-C' autoComplete='off'></Field>
+                  <div className="author-error">
+                    <Field name='author' placeholder='Author' className='formik-form-field-A-C' autoComplete='off'></Field>
+                    <ErrorMessage component="div" name="author" className="formik-error" />
+                  </div>
                 </div>
                 <div className="formik-tag">
                   <label htmlFor="category">Tag</label>
-                  <Field name='category' as="select">
-                  <option value="" disabled>Select one</option>
-                    {TAGS.map(tag => (
-                      <option value={tag} key={tag}>{tag}</option>
-                    ))}
-                  </Field>
+                  <div>
+                    <Field name='category' as="select">
+                      <option value="" disabled>Select one</option>
+                      {TAGS.map(tag => (
+                        <option value={tag} key={tag}>{tag}</option>
+                      ))}
+                    </Field>
+                    <ErrorMessage component="div" name="category" className="formik-error" />
+                  </div>
                 </div>
               </div>
             </div>
             <div className="formik-head-div">
               <label htmlFor="body">Body</label>
-              <Field name='body' placeholder='Body' component="textarea" className='formik-form-textarea' rows='20'></Field>
+              <div>
+                <Field name='body' placeholder='Body' component="textarea" className='formik-form-textarea' rows='20'></Field>
+                <ErrorMessage component="div" name="body" className="formik-error" />
+              </div>
             </div>
-            
             <button className="formik-btn-submit" type="submit">Save</button>
           </Form>
         )}
