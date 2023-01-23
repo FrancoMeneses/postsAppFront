@@ -1,4 +1,6 @@
 import { usePosts } from "../context/appContext"
+import { VscNewFile } from "react-icons/vsc"
+import { NavLink } from "react-router-dom"
 
 export function Home () {
 
@@ -7,14 +9,22 @@ export function Home () {
   return(
     <div className="container-home">
       <div className="container-data">
-        <div>
-          <button>Agregar</button>
+        <div className="header-home">
+          <h2>Posts</h2>
+          <NavLink to='/newform'>
+            <VscNewFile />
+          </NavLink>
+        </div>
+        <div className="posts">
           {posts.map((post) => {
             return(
-              <div key={post._id}>
+              <NavLink to={`/post/${post._id}`} key={post._id} className='post'>
                 <h2>{post.title}</h2>
                 <li>{post.body}</li>
-              </div>
+                <div className="post-tag">
+                  {post.category}
+                </div>
+              </NavLink>
             )
           })}
         </div>

@@ -1,4 +1,4 @@
-export async function getPosts() {
+export async function getPostsRequest() {
   try {
     const res = await fetch('https://postsapp.onrender.com/posts')
     const data = res.json()
@@ -8,7 +8,7 @@ export async function getPosts() {
   }
 }
 
-export async function getPost(id) {
+export async function getPostRequest(id) {
   try {
     const res = await fetch(`https://postsapp.onrender.com/posts/${id}`)
     const data = res.json()
@@ -18,7 +18,22 @@ export async function getPost(id) {
   }
 }
 
-export async function createPost(data) {
+export async function createPostRequest(data) {
+  // try {
+  //   console.log(data)
+  //   const res = await fetch(`https://postsapp.onrender.com/posts`, {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     mode: 'no-cors',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //   }
+  // })
+  //   console.log(res)
+  //   return res
+  // } catch (error) {
+  //   console.log(error)
+  // }
   try {
     const form = new FormData()
     for(let key in data){
@@ -28,13 +43,14 @@ export async function createPost(data) {
       method: 'POST',
       body: form
     })
+    console.log(res)
     return res
   } catch (error) {
     console.log(error)
   }
 }
 
-export async function deletePost(id) {
+export async function deletePostRequest(id) {
   try {
     const res = await fetch(`https://postsapp.onrender.com/posts/${id}`, {
       method: 'DELETE'

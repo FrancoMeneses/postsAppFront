@@ -1,6 +1,13 @@
 import { Formik, Form, Field } from "formik"
+import { TAGS } from "./info"
+import { usePosts } from "../context/appContext"
+import { useNavigate } from "react-router-dom"
 
 export function NewForm() {
+
+  const { createPost, posts, setPosts } = usePosts()
+  const navigate = useNavigate()
+
   return (
     <div className="container-formik">
       <Formik
@@ -10,8 +17,14 @@ export function NewForm() {
           body: '',
           category: ''
         }}
-        onSubmit={(values, actions) => {
-          console.log(values)
+        onSubmit={ async (values, actions) => {
+          const res = await createPost(values)
+          if(res?.status === 200 ) {
+            // setPosts([...posts, ])
+            // alert('Post created')
+            // navigate('/')
+          } 
+          if(res?.status === 500 ) alert('There is a problem with the post')
         }}
       >
         {({ handleSubmit }) => (
@@ -24,14 +37,15 @@ export function NewForm() {
               <div className="formik-head-div-A-C">
                 <div className="formik-author">
                   <label htmlFor="author">Author</label>
-                  <Field name='author' placeholder='Author' className='formik-form-field-A-C'></Field>
+                  <Field name='author' placeholder='Author' className='formik-form-field-A-C' autoComplete='off'></Field>
                 </div>
                 <div className="formik-tag">
                   <label htmlFor="category">Tag</label>
                   <Field name='category' as="select">
-                    <option value="A">Option A</option>
-                    <option value="B">Option B</option>
-                    <option value="C">Option C</option>
+                  <option value="" disabled>Select one</option>
+                    {TAGS.map(tag => (
+                      <option value={tag} key={tag}>{tag}</option>
+                    ))}
                   </Field>
                 </div>
               </div>
@@ -40,7 +54,7 @@ export function NewForm() {
               <label htmlFor="body">Body</label>
               <Field name='body' placeholder='Body' component="textarea" className='formik-form-textarea' rows='20'></Field>
             </div>
-            {/* <Field placeholder='Author'></Field> */}
+            
             <button className="formik-btn-submit" type="submit">Save</button>
           </Form>
         )}
