@@ -25,6 +25,7 @@ export function NewForm() {
           category: yup.string().required('Select a tag')
         })}
         onSubmit={async (values, actions) => {
+          values.date = Date()
           const res = await createPost(values)
           console.log(res)
           if (res._id) {

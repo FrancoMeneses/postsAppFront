@@ -50,6 +50,39 @@ export async function createPostRequest(data) {
   }
 }
 
+export async function updatePostRequest(data, id, onlyC) {
+  try {
+    if(onlyC){
+      let headersList = {
+        "Content-Type": "application/json"
+       }
+       let bodyContent = JSON.stringify(data);
+       
+       let response = await fetch(`https://postsapp.onrender.com/posts/${id}`, { 
+         method: "PUT",
+         body: bodyContent,
+         headers: headersList
+       })
+       let postUpdated = await response.json()
+       return true
+    }else{
+      console.log(data)
+      const form = new FormData()
+      for (let key in data) {
+        form.append(key, data[key])
+      }
+      const res = await fetch(`https://postsapp.onrender.com/posts/${id}`, {
+        method: 'PUT',
+        body: form
+      })
+      let postUpdated = await res.json()
+      return postUpdated
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function deletePostRequest(id) {
   try {
     const res = await fetch(`https://postsapp.onrender.com/posts/${id}`, {

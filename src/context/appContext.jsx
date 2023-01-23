@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react"
-import { createPostRequest, getPostRequest, getPostsRequest } from "../api/endpoints"
+import { createPostRequest, getPostRequest, getPostsRequest, updatePostRequest } from "../api/endpoints"
 
 const postsContext = createContext()
 
@@ -27,6 +27,11 @@ export function ContainerContext({ children }) {
     return data
   }
 
+  const updatePost = async (post, id, onlyC) => {
+    const data = await updatePostRequest(post, id, onlyC)
+    return data
+  }
+
   useEffect(() => {
     getPosts()
   }, [])
@@ -36,7 +41,8 @@ export function ContainerContext({ children }) {
     posts,
     setPosts,
     createPost,
-    getPost
+    getPost,
+    updatePost
   }}>
     {children}
   </postsContext.Provider>
