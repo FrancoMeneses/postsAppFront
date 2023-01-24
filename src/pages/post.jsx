@@ -10,21 +10,27 @@ export function Post() {
   const { id } = useParams()
   const { getPost, updatePost, posts, parseDate } = usePosts()
   const [post, setPost] = useState({})
+  const [loading, setLoading] = useState(false)
   const [comments, setComments] = useState([])
 
   const fetch = async (id) => {
+    setLoading(true)
     const res = await getPost(id)
     setPost(res)
     setComments(res.comments)
+    setLoading(false)
   }
 
   useEffect(() => {
     fetch(id)
   }, [])
 
-  if (post.length === 0) {
+  if (loading) {
     return (
-      <div>Loading post...</div>
+      <div className="loading">
+        <p>Loading post...</p>
+        <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
     )
   }
 
