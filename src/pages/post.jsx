@@ -49,10 +49,10 @@ export function Post() {
         </div>
       </div>
       <div className="post-comments">
-        <p>Comments</p>
+        <p>Comments{`(${comments.length !== undefined ? comments.length : '0'})`}</p>
         {comments.map(comment => {
           return (
-            <div key={comment.body} className="post-comment">
+            <div key={comment._id || comment.body} className="post-comment">
               <div className="post-comment-username">
                 <VscAccount className="post-user" />
                 Username
@@ -85,9 +85,15 @@ export function Post() {
                   p.comments.push(newComment.comments)
                 }
               })
+              actions.resetForm({
+                values: {
+                  body: ''
+                }})
             }
             if (!res) alert('There is a problem with the comment')
-          }}>
+          }}
+          
+          >
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
               <div className="post-comment-submit">
