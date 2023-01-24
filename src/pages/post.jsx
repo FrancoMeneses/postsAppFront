@@ -3,11 +3,12 @@ import { usePosts } from "../context/appContext"
 import { useParams } from "react-router-dom"
 import { Formik, Form, Field } from "formik"
 import * as yup from 'yup'
+import { VscAccount } from "react-icons/vsc";
 
 export function Post() {
 
   const { id } = useParams()
-  const { getPost, updatePost } = usePosts()
+  const { getPost, updatePost, posts, parseDate } = usePosts()
   const [post, setPost] = useState({})
   const [comments, setComments] = useState([])
 
@@ -29,15 +30,37 @@ export function Post() {
 
   return (
     <div className="post-container">
-      <h2>{post.title}</h2>
-      <div>{post.body}</div>
-      <div>{post.author}</div>
-      <div>{post.category}</div>
-      <div>
+      <div className="post-layout">
+        <div className="post-layout-T-A">
+          <div className="post-layout-title">{post.title}</div>
+          <div className="post-layout-author">
+            <div className="post-layout-user">
+              By: <VscAccount /> {post.author}
+            </div>
+            <div>
+              {parseDate(post.date)}
+            </div>
+          </div>
+        </div>
+        <div className="post-layout-body">{post.body}</div>
+        <div className="post-layout-category">
+          <p>About:</p>
+          <div className="post-layout-category-fix">{post.category}</div>
+        </div>
+      </div>
+      <div className="post-comments">
         <p>Comments</p>
         {comments.map(comment => {
           return (
-            <div key={comment.body}>{comment.body}</div>
+            <div key={comment.body} className="post-comment">
+              <div className="post-comment-username">
+                <VscAccount className="post-user" />
+                Username
+              </div>
+              <div className="post-comment-body">
+                {comment.body}
+              </div>
+            </div>
           )
         })}
         <Formik
@@ -57,14 +80,19 @@ export function Post() {
             const res = await updatePost(newComment, id, true)
             if (res) {
               setComments([...comments, newComment.comments])
+              posts.forEach(p => {
+                if (p._id === id) {
+                  p.comments.push(newComment.comments)
+                }
+              })
             }
             if (!res) alert('There is a problem with the comment')
           }}>
           {({ handleSubmit }) => (
-            <Form onSubmit={handleSubmit} className="formik-form">
-              <div>
-                <Field name='body' placeholder='Insert comment..'></Field>
-                <button type="submit">Enviar</button>
+            <Form onSubmit={handleSubmit}>
+              <div className="post-comment-submit">
+                <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
+                <button type="submit">Send</button>
               </div>
             </Form>
           )}

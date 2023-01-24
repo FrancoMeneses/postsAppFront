@@ -3,7 +3,8 @@ body {
   margin: 0;
   min-height: 100%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #9ec9e6;
+  /* background-color: #9ec9e6; */
+  background-color: #b7ccdb;
   /* background-image: url(./assets/waveUp.svg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -58,8 +59,8 @@ body {
 }
 
 .container-data {
-  width: 400px;
-  padding-top: 10px;
+  width: 100%;
+  /* padding-top: 10px; */
   display: flex;
   flex-direction: column;
 }
@@ -72,7 +73,7 @@ body {
   justify-content: center;
   gap: 15px;
   font-size: 25px;
-  padding-bottom: 10px;
+  padding: 10px;
 }
 
 .header-home h2 {
@@ -93,12 +94,41 @@ body {
 .header-home svg {
   padding: 0;
   margin: 0;
-  
+}
+
+.nopost p {
+  padding: 20px;
+  margin: 0;
+  margin-top: 10px;
+  text-align: justify;
+  font-size: 20px;
+}
+
+.nopost h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.header-home-newpost {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: end;
+}
+
+.header-home-newpost p {
+  margin: 0;
+  padding: 0;
+  font-size: small;
 }
 
 .posts {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 10px;
 }
 
 .post h2, li {
@@ -111,6 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid #123045;
+  border-radius: 5px;
   padding: 20px;
   gap: 10px;
   text-decoration: none;
@@ -132,9 +163,65 @@ body {
   text-align: center;
 }
 
-.post-comments {
+.post-no-comments{
   font-weight: bold;
-  font-size: 14px;
+}
+
+.post-comments {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  width: 95%;
+  margin: 20px;
+  gap: 10px;
+  border-radius: 5px;
+  background-color: #82abc8;
+}
+
+.post-comments p {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-comment{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #123045;
+  padding: 20px;
+  margin: 0 10px 0 10px;
+  /* gap: 5px; */
+  border-radius: 5px;
+  background-color: #b7ccdb;
+  /* background-color: #3c6783; */
+}
+
+.post-comment-username{
+  display: flex;
+  align-items: center;
+}
+
+.post-comment-body{
+  text-align: start;
+  overflow-wrap: break-word;
+}
+
+.post-user{
+  width: 20px;
+  height: 20px;
+  align-self: start;
+  padding: 5px;
+}
+
+.post-comment-submit {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.post-comment-submit textarea {
+  width: 100%;
 }
 
 .post-tag-comments {
@@ -147,19 +234,32 @@ body {
 .container-formik {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .formik-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
   padding: 20px;
-  width: 300px;
+  width: 80%;
   border: 2px solid black;
   border-radius: 5px;
-  background-color: #3c6783;
+  /* background-color: #3c6783; */
+  background-color: #b7ccdb;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 20px;
+}
+
+.formik-wraper{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* .formik-form div {
@@ -176,27 +276,53 @@ body {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  display: 100%;
 }
 
 .formik-head-div {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 20px;
   gap: 10px;
   width: 100%;
 }
 
+.formik-head-div-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.formik-head-div-textarea{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .formik-head-div-A-C {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
   font-size: 20px;
+  width: 100%;
 }
 
 .formik-form-field-A-C {
   border-radius: 5px;
-  width: 80px;
+  width: 200px;
   height: 25px;
   font-size: 15px;
 }
@@ -211,6 +337,11 @@ body {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  border-radius: 5px;
+}
+
+.formik-tag select {
+  height: 30px;
   border-radius: 5px;
 }
 
@@ -239,7 +370,7 @@ body {
 }
 
 @media (min-width: 700px) {
-  .formik-form {
+  /* .formik-form {
     width: 500px;
   }
 
@@ -249,11 +380,24 @@ body {
 
   .formik-tag select {
     width: 100px;
+  } */
+
+  .formik-head-div-A-C{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .formik-form-textarea {
+    width: 500px;
+  }
+
+  .formik-form-field{
+    width: 500px;
   }
 }
 
 @media (min-width: 900px) {
-  .formik-form {
+  /* .formik-form {
     width: 700px;
   }
 
@@ -263,6 +407,14 @@ body {
 
   .formik-tag select {
     width: 200px;
+  } */
+
+  .formik-form-textarea {
+    width: 650px;
+  }
+
+  .formik-form-field{
+    width: 650px;
   }
 }
 
@@ -273,4 +425,74 @@ body {
   justify-content: center;
   align-items: center;
   gap: 15px;
+  width: 100%;
+}
+
+.post-layout{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding: 15px;
+  gap: 15px;
+}
+
+.post-layout-T-A {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+.post-layout-title{
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.post-layout-author {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.post-layout-user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-layout-body {
+  text-align: justify;
+  font-size: 20px;
+  width: 100%;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.post-layout-category {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.post-layout-category p {
+  margin: 0;
+  padding: 0;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.post-layout-category-fix {
+  max-width: fit-content;
+  border: 1px solid #123045;
+  border-radius: 5px;
+  padding: 5px;
 }

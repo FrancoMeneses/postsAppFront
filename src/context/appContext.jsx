@@ -14,6 +14,9 @@ export function ContainerContext({ children }) {
 
   const getPosts = async () => {
     const data = await getPostsRequest()
+      data.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date)
+      })
     setPosts(data)
   }
 
@@ -32,6 +35,11 @@ export function ContainerContext({ children }) {
     return data
   }
 
+  const parseDate = date => {
+    const parse = new Date(date)
+    return parse.toLocaleDateString('en-GB')
+  }
+
   useEffect(() => {
     getPosts()
   }, [])
@@ -42,7 +50,8 @@ export function ContainerContext({ children }) {
     setPosts,
     createPost,
     getPost,
-    updatePost
+    updatePost,
+    parseDate
   }}>
     {children}
   </postsContext.Provider>
