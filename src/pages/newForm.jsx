@@ -3,11 +3,26 @@ import { TAGS } from "./info"
 import { usePosts } from "../context/appContext"
 import { useNavigate } from "react-router-dom"
 import * as yup from 'yup'
+// import SimpleMdeReact from "react-simplemde-editor"
+// import "easymde/dist/easymde.min.css";
+// import { useState, useCallback } from "react"
 
 export function NewForm() {
 
   const { createPost, posts, setPosts } = usePosts()
   const navigate = useNavigate()
+  
+  // const [value, setValue] = useState("Initial value");
+
+  // const onChange = useCallback((value) => {
+  //   setValue(value);
+  //   console.log(value)
+  // }, [])
+
+  // const MyInput = ({ field, form, ...props }) => {
+  //   return <SimpleMdeReact {...field} {...props} />
+  // }
+  
 
   return (
     <div className="container-formik">
@@ -72,7 +87,7 @@ export function NewForm() {
               <div className="formik-head-div-body">
                 <label htmlFor="body">Body</label>
                 <div className="formik-head-div-textarea">
-                  <Field name='body' placeholder='Body' component="textarea" className='formik-form-textarea' rows='20'></Field>
+                  <Field name='body' placeholder='Body' component="textarea" rows="20" id="markdown" className='formik-form-textarea' ></Field>
                   <ErrorMessage component="div" name="body" className="formik-error" />
                 </div>
               </div>
@@ -81,6 +96,7 @@ export function NewForm() {
           </Form>
         )}
       </Formik>
+      {/* <SimpleMdeReact value={value} onChange={onChange} /> */}
     </div>
   )
 }

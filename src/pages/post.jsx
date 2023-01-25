@@ -3,7 +3,7 @@ import { usePosts } from "../context/appContext"
 import { useParams } from "react-router-dom"
 import { Formik, Form, Field } from "formik"
 import * as yup from 'yup'
-import { VscAccount } from "react-icons/vsc";
+import { VscAccount } from "react-icons/vsc"
 
 export function Post() {
 
@@ -103,7 +103,7 @@ export function Post() {
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
               <div className="post-comment-submit">
-                <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
+                <Field name='body' as="textarea" rows="2"  placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
                 <button type="submit">Send</button>
               </div>
             </Form>
