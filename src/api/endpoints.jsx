@@ -28,7 +28,7 @@ export async function createPostRequest(data) {
         form.append(key, data[key])
       }
     }
-    const res = await fetch(`https://postsapp.onrender.com/posts`, {
+    const res = await fetch(`http://localhost:4000`, {
       method: 'POST',
       body: form
     })

@@ -88,7 +88,17 @@ form {
   border-radius: 5px;
   background-color: rgb(241, 146, 146);
   border: 1px solid black;
-  /* width: 25px;
-  height: 25px; */
   font-size: 10px;
+}
+
+.form-div-image {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+
+.coverimage {
+  width: 50%;
+  height: 50%;
 }
