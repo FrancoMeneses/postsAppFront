@@ -12,11 +12,7 @@ export function NewPost() {
   const { posts, setPosts, createPost } = usePosts()
   const navigate = useNavigate()
 
-  const [value, setValue] = useState()
-
   function handleImage(e) {
-    console.log(e.target.files[0])
-    setValue(e.target.files[0])
     setFormValues({
       ...formValues,
       image: e.target.files[0]
@@ -96,18 +92,22 @@ export function NewPost() {
   async function handleSubmit(e) {
     e.preventDefault()
     if (formValues.body !== '' && formValues.title !== '' && formValues.author !== '' && formValues.description !== '' && e.key !== "Enter") {
+      const isLoading = document.getElementById('isLoading')
+      isLoading.classList.remove('isnoLoading')
+      isLoading.classList.add('isLoading')
       formValues.date = Date()
       const res = await createPost(formValues)
       if (res._id) {
+        document.getElementById('loadNew2').className = 'isnoLoading'
+        document.getElementById('loadingP').innerText = 'Post Created'
+        document.getElementById('loadingbtn').classList.remove('isnoLoading')
         setPosts([...posts, res])
-        alert('Your post was created successfully')
         setFormValues({
           title: '',
           author: '',
           description: '',
           body: ''
         })
-        navigate('/')
       }
     } else {
       alert('Verify fields, they cannot be empty')
@@ -115,11 +115,22 @@ export function NewPost() {
   }
 
   return (
-    <section>
+    <section id='section' className='section'>
+      <div id='isLoading' className='isnoLoading'>
+        <div id='isResponse' className='isResponse'></div>
+        <div id='loadNew1' className='loadingNew'>
+          <p id='loadingP'>Creating post...</p>
+          <div id='loadNew2' className="lds-ringNew"><div></div><div></div><div></div><div></div></div>
+          <button id='loadingbtn' type='button' className='loadingbtn isnoLoading' onClick={() => {navigate('/')}}>OK</button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div id='form-title' className='form-div-input'>
           <label htmlFor='title' className='label-required'>Title</label>
-          <input id='title' name='title' value={formValues.title} className="form-input" autoComplete='off' placeholder='Insert your title...' onChange={handleChange} onBlur={handleEmpty}></input>
+          <input id='title' name='title' value={formValues.title} className="form-input" autoComplete='off' placeholder='Insert your title...'
+            onChange={handleChange}
+            onBlur={handleEmpty}>
+          </input>
         </div>
         <div id="form-author" className='form-div-input'>
           <label htmlFor='author' className='label-required'>Author</label>
