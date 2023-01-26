@@ -7,8 +7,25 @@ import { usePosts } from '../context/appContext';
 
 export function NewPost() {
 
+  document.title = 'New Post'
+
   const { posts, setPosts, createPost } = usePosts()
   const navigate = useNavigate()
+
+  const [value, setValue] = useState()
+
+  function handleImage(e) {
+    console.log(e.target.files[0])
+    setValue(e.target.files[0])
+    setFormValues({
+      ...formValues,
+      image: e.target.files[0]
+    })
+    const img = document.getElementById('imgload')
+    var url = URL.createObjectURL(e.target.files[0]);
+    img.src = url;
+    img.className = 'coverimage'
+  }
 
   const [tag, setTag] = useState('')
 
@@ -40,7 +57,8 @@ export function NewPost() {
     author: '',
     description: '',
     body: '',
-    tags: []
+    tags: [],
+    image: ''
   })
 
   const onPostBodyChange = (value) => {
@@ -78,7 +96,6 @@ export function NewPost() {
   async function handleSubmit(e) {
     e.preventDefault()
     if (formValues.body !== '' && formValues.title !== '' && formValues.author !== '' && formValues.description !== '' && e.key !== "Enter") {
-      console.log(formValues)
       formValues.date = Date()
       const res = await createPost(formValues)
       if (res._id) {
@@ -135,6 +152,11 @@ export function NewPost() {
               </div>
             )
           })}</div>
+        </div>
+        <div className='form-div-image'>
+          <label htmlFor='image'>Cover image</label>
+          <input name='image' type="file" accept="image/png, image/jpeg" onChange={handleImage}></input>
+          <img id='imgload' alt='' />
         </div>
         <div id="form-body">
           <label htmlFor='body' className='label-required'>Body</label>

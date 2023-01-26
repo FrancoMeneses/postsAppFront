@@ -6,6 +6,8 @@ export function Home() {
 
   const { posts, parseDate } = usePosts()
 
+  document.title = 'Posts App'
+
   if (posts.length === 0) {
     return (
       <div className="nopost">
