@@ -57,3 +57,38 @@ form {
   border: 1px solid red;
   border-radius: 2px;
 }
+
+.tag-div-input-button {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+
+.tags-map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 0px 10px 0px;
+  width: 100%;
+}
+
+.tag-delete-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  background-color: #688191;
+  border-radius: 5px;
+  width: auto;
+  color: white;
+  overflow-wrap: break-word;
+}
+
+.tag-delete-item-button {
+  border-radius: 5px;
+  background-color: rgb(241, 146, 146);
+  border: 1px solid black;
+  /* width: 25px;
+  height: 25px; */
+  font-size: 10px;
+}

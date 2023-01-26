@@ -39,9 +39,6 @@ export function Home() {
                 <summary>{post.description}</summary>
                 <div className="post-tag-comments">
                   <div className="post-no-comments">Comments: {post.comments.length}</div>
-                  <div className="post-tag">
-                    {post.category}
-                  </div>
                 </div>
               </NavLink>
             )

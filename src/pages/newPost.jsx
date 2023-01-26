@@ -28,7 +28,7 @@ export function NewPost() {
   }
 
   function handleDeleteTag(e) {
-    const newTags = formValues.tags.filter( tag => e.target.name !== tag)
+    const newTags = formValues.tags.filter(tag => e.target.name !== tag)
     setFormValues({
       ...formValues,
       tags: newTags
@@ -127,11 +127,11 @@ export function NewPost() {
             <input name='tags' className="form-input" value={tag} autoComplete='off' onKeyDown={handleTagSubmit} onChange={handleTagsChange}></input>
             <button type='button' onClick={handleTagSubmit}>Add</button>
           </div>
-          <div id='form-tags-div'>{formValues.tags && formValues.tags.map( tag => {
+          <div id='form-tags-div' className='tags-map'>{formValues.tags && formValues.tags.map(tag => {
             return (
-              <div key={tag}>
+              <div key={tag} className='tag-delete-item'>
                 {tag}
-                <button name={tag} type='button' onClick={handleDeleteTag} className='tag-delete-button'>X</button>
+                <button name={tag} type='button' onClick={handleDeleteTag} className='tag-delete-item-button'>X</button>
               </div>
             )
           })}</div>
