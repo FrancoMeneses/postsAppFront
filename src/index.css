@@ -1,15 +1,9 @@
 body {
   padding: 0;
   margin: 0;
-  min-height: 100%;
+  height: 100%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #ffffff;
-  /* background-color: #b7ccdb; */
-  /* background-image: url(./assets/waveUp.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-attachment: fixed;
-  background-position: top 50px center; */
 }
 
 .navbar {
@@ -18,7 +12,6 @@ body {
   padding: 0;
   margin: 0;
   background: #3c6783;
-  /* background: #123045; */
   color: white;
   display: flex;
   flex-direction: row;
@@ -60,7 +53,6 @@ body {
 
 .container-data {
   width: 100%;
-  /* padding-top: 10px; */
   display: flex;
   flex-direction: column;
 }
@@ -260,7 +252,6 @@ body {
   width: 80%;
   border: 2px solid black;
   border-radius: 5px;
-  /* background-color: #3c6783; */
   background-color: #b7ccdb;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 20px;
@@ -273,16 +264,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-/* .formik-form div {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  width: 300px;
-  justify-content: space-between;
-  color: white;
-  font-size: 20px;
-} */
 
 .formik-head {
   display: flex;
@@ -382,18 +363,6 @@ body {
 }
 
 @media (min-width: 700px) {
-  /* .formik-form {
-    width: 500px;
-  }
-
-  .formik-form-field-A-C {
-    width: 200px;
-  }
-
-  .formik-tag select {
-    width: 100px;
-  } */
-
   .formik-head-div-A-C{
     flex-direction: row;
     justify-content: space-between;
@@ -409,18 +378,6 @@ body {
 }
 
 @media (min-width: 900px) {
-  /* .formik-form {
-    width: 700px;
-  }
-
-  .formik-form-field-A-C {
-    width: 300px;
-  }
-
-  .formik-tag select {
-    width: 200px;
-  } */
-
   .formik-form-textarea {
     width: 650px;
   }
