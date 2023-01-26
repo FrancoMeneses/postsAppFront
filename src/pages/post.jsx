@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { Formik, Form, Field } from "formik"
 import * as yup from 'yup'
 import { VscAccount } from "react-icons/vsc"
+import ReactMarkdown from "react-markdown"
 
 export function Post() {
 
@@ -48,10 +49,18 @@ export function Post() {
             </div>
           </div>
         </div>
-        <div className="post-layout-body">{post.body}</div>
-        <div className="post-layout-category">
-          <p>About:</p>
-          <div className="post-layout-category-fix">{post.category}</div>
+        <div className="post-layout-body">
+          <ReactMarkdown>{post.body}</ReactMarkdown>
+        </div>
+        <div className="post-layout-tags">
+          <p>{post.tags?.length !== 0 ? 'Tags: ' : 'Without tags'}</p>
+          <div className="post-layout-tags-fix">
+            {post.tags && post.tags.map(tag => {
+              return(
+                <li key={tag}>{tag}</li>
+              )
+            })}
+          </div>
         </div>
       </div>
       <div className="post-comments">
@@ -94,16 +103,17 @@ export function Post() {
               actions.resetForm({
                 values: {
                   body: ''
-                }})
+                }
+              })
             }
             if (!res) alert('There is a problem with the comment')
           }}
-          
-          >
+
+        >
           {({ handleSubmit }) => (
             <Form onSubmit={handleSubmit}>
               <div className="post-comment-submit">
-                <Field name='body' as="textarea" rows="2"  placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
+                <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
                 <button type="submit">Send</button>
               </div>
             </Form>
