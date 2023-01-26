@@ -9,15 +9,15 @@ export function Home() {
   if (posts.length === 0) {
     return (
       <div className="nopost">
-      <div className="header-home">
-        <h2>Posts</h2>
+        <div className="header-home">
+          <h2>Posts</h2>
+        </div>
+        <h2>There are no post</h2>
         <NavLink to='/newpost' className="header-home-newpost">
-          <VscNewFile />
-          <p>New post</p>
+            <VscNewFile />
+            <p>Create New Post</p>
         </NavLink>
-      </div>
-      <h2>There are no post</h2>
-      <p>Probably due to API does not active yet, with this call will be enabled soon, please wait.</p>
+        <p>Probably due to API does not active yet, with this call will be enabled soon, please wait.</p>
       </div>
     )
   }
@@ -27,10 +27,6 @@ export function Home() {
       <div className="container-data">
         <div className="header-home">
           <h2>Posts</h2>
-          <NavLink to='/newpost' className="header-home-newpost">
-            <VscNewFile />
-            <p>New post</p>
-          </NavLink>
         </div>
         <div className="posts">
           {posts.map((post) => {
@@ -40,7 +36,7 @@ export function Home() {
                   <h2>{post.title}</h2>
                   <p>{parseDate(post.date)}</p>
                 </div>
-                <li>{post.body.slice(0, 200)}...</li>
+                <summary>{post.description}</summary>
                 <div className="post-tag-comments">
                   <div className="post-no-comments">Comments: {post.comments.length}</div>
                   <div className="post-tag">

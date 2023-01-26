@@ -19,25 +19,14 @@ export async function getPostRequest(id) {
 }
 
 export async function createPostRequest(data) {
-  // try {
-  //   console.log(data)
-  //   const res = await fetch(`https://postsapp.onrender.com/posts`, {
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //     mode: 'no-cors',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //   }
-  // })
-  //   console.log(res)
-  //   return res
-  // } catch (error) {
-  //   console.log(error)
-  // }
   try {
     const form = new FormData()
     for (let key in data) {
-      form.append(key, data[key])
+      if(key === 'tags'){
+        form.append(key, JSON.stringify(data[key]))
+      }else{
+        form.append(key, data[key])
+      }
     }
     const res = await fetch(`https://postsapp.onrender.com/posts`, {
       method: 'POST',
