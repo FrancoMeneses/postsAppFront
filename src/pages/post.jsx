@@ -5,6 +5,7 @@ import { Formik, Form, Field } from "formik"
 import * as yup from 'yup'
 import { VscAccount } from "react-icons/vsc"
 import ReactMarkdown from "react-markdown"
+import '../styles/post.css'
 
 export function Post() {
 
@@ -51,7 +52,6 @@ export function Post() {
               height: '300px',
               width: '100%'}}
             >
-              {/* <img src={post.image?.url} /> */}
               <h2>{post.title}</h2>
             </div>
             <div className="post-layout-author">
@@ -127,7 +127,7 @@ export function Post() {
             {({ handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
                 <div className="post-comment-submit">
-                  <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' className="formik-form-comment" autoComplete="off"></Field>
+                  <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' autoComplete="off"></Field>
                   <button type="submit">Send</button>
                 </div>
               </Form>

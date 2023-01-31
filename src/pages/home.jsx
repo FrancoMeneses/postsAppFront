@@ -1,6 +1,7 @@
 import { usePosts } from "../context/appContext"
 import { VscNewFile } from "react-icons/vsc"
 import { NavLink } from "react-router-dom"
+import "../styles/home.css"
 
 export function Home() {
 

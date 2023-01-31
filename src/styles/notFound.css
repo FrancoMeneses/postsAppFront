@@ -1,0 +1,44 @@
+/* main {
+  height: 100vh;
+} */
+
+.div-svg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 80px;
+}
+
+.div-svg a {
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  color: #407bff;
+}
+
+section p {
+  text-align: center;
+  font-size: 30px;
+  color: #407bff;
+  font-weight: bold;
+}
+
+section img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 700px) {
+  section img {
+    height: 50%;
+    width: 50%;
+  }
+
+  section p {
+    font-size: 40px;
+  }
+}
