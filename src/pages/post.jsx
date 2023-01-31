@@ -21,7 +21,6 @@ export function Post() {
     setPost(res)
     setComments(res.comments)
     setLoading(false)
-    console.log(post)
   }
 
   useEffect(() => {
