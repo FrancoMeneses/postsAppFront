@@ -124,7 +124,7 @@ export function NewPost() {
           <button id='loadingbtn' type='button' className='loadingbtn isnoLoading' onClick={() => {navigate('/')}}>OK</button>
         </div>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className='form-newPost' onSubmit={handleSubmit}>
         <div id='form-title' className='form-div-input'>
           <label htmlFor='title' className='label-required'>Title</label>
           <input id='title' name='title' value={formValues.title} className="form-input" autoComplete='off' placeholder='Insert your title...'

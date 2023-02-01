@@ -1,6 +1,6 @@
 import './App.css'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
-import { Navbar, Home, NewPost, NotFound, Post} from './imports'
+import { Navbar, Home, NewPost, NotFound, Post, Login} from './imports'
 import { ContainerContext } from './context/appContext'
 
 function Layout() {
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/post/:id",
         element: <Post />
+      },
+      {
+        path: '/login',
+        element: <Login />
       },
       {
         path: '*',

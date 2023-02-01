@@ -1,0 +1,169 @@
+.main-sign {
+  width: 100%;
+  height: calc(100vh - 60px);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #7291bc;
+  /* border: 1px solid red; */
+}
+
+.form-sign {
+  width: 330px;
+  /* height: 300px; */
+  height: fit-content;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10px 30px 10px;
+  gap: 30px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.container-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 85px;
+}
+
+.form-field {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-field label::after {
+  content: ' *';
+  color: red;
+}
+
+.form-field input {
+  width: 170px;
+  height: 100%;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.error-field {
+  border: 2px solid red;
+}
+
+.error-div::after {
+  content: 'This field is required';
+  color: red;
+  font-size: 11px;
+}
+
+.div-button-signIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70px;
+  margin: 10px 0 10px 0;
+}
+
+.div-button-signIn-Error::after {
+  content: 'Email or password fields cannot be empty';
+  color: red;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-signin-button {
+  width: 280px;
+  height: 50px;
+  border: transparent;
+  border-radius: 10px;
+  background-color: #21688c;
+  color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+
+.form-signin-button:hover {
+  background-color: #002f4e;
+  -webkit-transition: all 0.5s 0s ease-in-out;
+  -moz-transition: all 0.5s 0s ease-in-out;
+  -o-transition: all 0.5s 0s ease-in-out;
+  transition: all 0.5s 0s ease-in-out;
+
+  width: 300px;
+}
+
+.div-form-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  height: 50px;
+}
+
+.form-info-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-info-new p {
+  padding: 0;
+  margin: 0;
+}
+
+.form-info-new button {
+  padding: 4px;
+  border: 1px solid #21688c;
+  border-radius: 5px;
+  background-color: transparent;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.form-info-new button:hover {
+  background-color: #002f4e;
+  color: white;
+  -webkit-transition: all 0.2s 0s ease-in-out;
+  -moz-transition: all 0.2s 0s ease-in-out;
+  -o-transition: all 0.2s 0s ease-in-out;
+  transition: all 0.2s 0s ease-in-out;
+}
+
+.form-info-reset {
+  display: flex;
+  gap: 5px;
+}
+
+.form-info-reset p {
+  padding: 0;
+  margin: 0;
+}
+
+.form-info-reset button {
+  background-color: transparent;
+  border: transparent;
+  text-decoration: underline;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.hide {
+  visibility: hidden;
+}
