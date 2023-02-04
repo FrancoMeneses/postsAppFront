@@ -24,7 +24,6 @@ export function Navbar() {
       <h3>Posts App</h3>
       <div className="navbar-a">
         <NavLink end to="/">Home</NavLink>
-        <NavLink end to="/newpost">New Post</NavLink>
         {
           loggedUser !== null ?
             <div className="container-logged">
@@ -34,6 +33,7 @@ export function Navbar() {
                 </p>
               </button>
               <div id="ul-logged" className="ul-logged hideMenu">
+                <NavLink end to="/newpost">New Post</NavLink>
                 <NavLink className="li-logged">My Posts</NavLink>
                 <NavLink className="li-logged">My Account</NavLink>
                 <button className="li-logged" type="button" onClick={signOut}>Sign Out</button>
