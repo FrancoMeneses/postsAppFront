@@ -12,8 +12,8 @@ export async function getPostsRequest() {
 
 export async function getPostRequest(id) {
   try {
-    // const res = await fetch(`https://postsapp.onrender.com/posts/${id}`)
-    const res = await fetch(`http://localhost:4000/posts/${id}`)
+    const res = await fetch(`https://postsapp.onrender.com/posts/${id}`)
+    // const res = await fetch(`http://localhost:4000/posts/${id}`)
     const data = res.json()
     return data
   } catch (error) {
@@ -31,7 +31,7 @@ export async function createPostRequest(data) {
         form.append(key, data[key])
       }
     }
-    const res = await fetch(`http://localhost:4000/posts`, {
+    const res = await fetch(`https://postsapp.onrender.com/posts`, {
       method: 'POST',
       body: form
     })
@@ -89,7 +89,7 @@ export async function deletePostRequest(id) {
 export async function handleLogin(user) { 
   try {
     console.log(user)
-    const res = await fetch('http://localhost:4000/login',{
+    const res = await fetch('https://postsapp.onrender.com/login',{
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -106,7 +106,7 @@ export async function handleLogin(user) {
 
 export async function handleCreateUser(user) {
 try {
-  const res = await fetch('http://localhost:4000/newuser',{
+  const res = await fetch('https://postsapp.onrender.com/newuser',{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
