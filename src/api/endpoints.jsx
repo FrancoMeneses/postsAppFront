@@ -1,3 +1,5 @@
+import { json } from "react-router-dom"
+
 export async function getPostsRequest() {
   try {
     const res = await fetch('https://postsapp.onrender.com/posts')
@@ -10,7 +12,8 @@ export async function getPostsRequest() {
 
 export async function getPostRequest(id) {
   try {
-    const res = await fetch(`https://postsapp.onrender.com/posts/${id}`)
+    // const res = await fetch(`https://postsapp.onrender.com/posts/${id}`)
+    const res = await fetch(`http://localhost:4000/posts/${id}`)
     const data = res.json()
     return data
   } catch (error) {
@@ -28,7 +31,7 @@ export async function createPostRequest(data) {
         form.append(key, data[key])
       }
     }
-    const res = await fetch(`https://postsapp.onrender.com/posts`, {
+    const res = await fetch(`http://localhost:4000/posts`, {
       method: 'POST',
       body: form
     })
@@ -81,4 +84,38 @@ export async function deletePostRequest(id) {
   } catch (error) {
     console.log(error)
   }
+}
+
+export async function handleLogin(user) { 
+  try {
+    console.log(user)
+    const res = await fetch('http://localhost:4000/login',{
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function handleCreateUser(user) {
+try {
+  const res = await fetch('http://localhost:4000/newuser',{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+  // const data = await res.json()
+  return res.status
+} catch (error) {
+  console.log(error)
+}
 }

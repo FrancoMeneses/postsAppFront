@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react"
-import { createPostRequest, getPostRequest, getPostsRequest, updatePostRequest } from "../api/endpoints"
+import { useNavigate } from "react-router-dom"
+import { createPostRequest, getPostRequest, getPostsRequest, updatePostRequest, handleLogin, handleCreateUser } from "../api/endpoints"
 
 const postsContext = createContext()
 
@@ -10,7 +11,14 @@ export const usePosts = () => {
 
 export function ContainerContext({ children }) {
 
+  const navigate = useNavigate()
+
   const [posts, setPosts] = useState([])
+  const [loggedUser, setLoggedUser] = useState(null)
+  const [newCreation, setNewCreation] = useState({
+    status: false,
+    loading: false
+  })
 
   const getPosts = async () => {
     const data = await getPostsRequest()
@@ -40,6 +48,22 @@ export function ContainerContext({ children }) {
     return parse.toLocaleDateString('en-GB')
   }
 
+  const login = async user => {
+    const data = await handleLogin(user)
+    return data
+  }
+
+  const newuser = async user => {
+    const data = await handleCreateUser(user)
+    return data
+  }
+
+  const signOut = () => {
+    console.log('Sign Out')
+    setLoggedUser(null)
+    navigate('/')
+  }
+
   useEffect(() => {
     getPosts()
   }, [])
@@ -51,7 +75,14 @@ export function ContainerContext({ children }) {
     createPost,
     getPost,
     updatePost,
-    parseDate
+    parseDate,
+    login,
+    newuser,
+    loggedUser,
+    setLoggedUser,
+    newCreation,
+    setNewCreation,
+    signOut
   }}>
     {children}
   </postsContext.Provider>
