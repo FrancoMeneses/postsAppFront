@@ -20,12 +20,13 @@ export function Loading({ message, path = '/' }) {
             loading: false
           })
           navigate(path)
-        }}>OK</button> : <button id='loadingbtnerror' type='button' className='errorbtn' onClick={() => {
+        }}>OK</button> : undefined}
+        {!newCreation.status ? <button id='loadingbtnerror' type='button' className='errorbtn' onClick={() => {
           setNewCreation({
             status: false,
             loading: false
           })
-        }}>OK</button>}
+        }}>OK</button> : undefined}
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ export function ContainerContext({ children }) {
   const [posts, setPosts] = useState([])
   const [loggedUser, setLoggedUser] = useState(null)
   const [newCreation, setNewCreation] = useState({
-    status: false,
+    status: null,
     loading: false
   })
 

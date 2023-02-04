@@ -92,34 +92,38 @@ export function NewPost() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setFormValues({
-      ...formValues,
-      user: loggedUser.username
-    })
-    if (formValues.body !== '' && formValues.title !== '' && formValues.user !== '' && formValues.description !== '' && e.key !== "Enter") {
-      setNewCreation({
-        status: false,
-        loading: true
+    try {
+      setFormValues({
+        ...formValues,
+        user: loggedUser._id
       })
-      formValues.date = Date()
-      const res = await createPost(formValues)
-      if (res._id) {
+      if (formValues.body !== '' && formValues.title !== '' && formValues.user !== '' && formValues.description !== '' && e.key !== "Enter") {
         setNewCreation({
-          status: true,
+          status: false,
           loading: true
         })
-        document.getElementById('loadNew2').className = 'isnoLoading'
-        document.getElementById('loadingP').innerText = 'Post Created'
-        setPosts([...posts, res])
-        setFormValues({
-          title: '',
-          author: '',
-          description: '',
-          body: ''
-        })
+        formValues.date = Date()
+        const res = await createPost(formValues)
+        if (res._id) {
+          setNewCreation({
+            status: true,
+            loading: true
+          })
+          document.getElementById('loadNew2').className = 'isnoLoading'
+          document.getElementById('loadingP').innerText = 'Post Created'
+          setPosts([...posts, res])
+          setFormValues({
+            title: '',
+            author: '',
+            description: '',
+            body: ''
+          })
+        }
+      } else {
+        alert('Verify fields, they cannot be empty')
       }
-    } else {
-      alert('Verify fields, they cannot be empty')
+    } catch (error) {
+      console.log(error)
     }
   }
 
