@@ -33,7 +33,7 @@ export function Navbar() {
                 </p>
               </button>
               <div id="ul-logged" className="ul-logged hideMenu">
-                <NavLink end to="/newpost">New Post</NavLink>
+                <NavLink end to="/newpost" className="li-logged">New Post</NavLink>
                 <NavLink className="li-logged">My Posts</NavLink>
                 <NavLink className="li-logged">My Account</NavLink>
                 <button className="li-logged" type="button" onClick={signOut}>Sign Out</button>

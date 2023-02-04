@@ -8,10 +8,14 @@ import { Loading } from '../components/loading';
 
 export function NewPost() {
 
+  const navigate = useNavigate()
+  const { posts, setPosts, createPost, newCreation, setNewCreation, loggedUser } = usePosts()
+  if(loggedUser === null){
+    navigate('/')
+  }
+
   document.title = 'New Post'
 
-  const { posts, setPosts, createPost, newCreation, setNewCreation, loggedUser } = usePosts()
-  const navigate = useNavigate()
 
   const [formValues, setFormValues] = useState({
     title: '',
