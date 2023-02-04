@@ -10,12 +10,12 @@ export function NewPost() {
 
   document.title = 'New Post'
 
-  const { posts, setPosts, createPost, newCreation, setNewCreation } = usePosts()
+  const { posts, setPosts, createPost, newCreation, setNewCreation, loggedUser } = usePosts()
   const navigate = useNavigate()
 
   const [formValues, setFormValues] = useState({
     title: '',
-    user: '63dc12478cb6055703fca45a',
+    user: '',
     description: '',
     body: '',
     tags: [],
@@ -92,6 +92,10 @@ export function NewPost() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    setFormValues({
+      ...formValues,
+      user: loggedUser.username
+    })
     if (formValues.body !== '' && formValues.title !== '' && formValues.user !== '' && formValues.description !== '' && e.key !== "Enter") {
       setNewCreation({
         status: false,
