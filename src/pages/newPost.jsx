@@ -4,13 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import SimpleMdeReact from "react-simplemde-editor"
 import "easymde/dist/easymde.min.css";
 import { usePosts } from '../context/appContext';
+import { Loading } from '../components/loading';
 
 export function NewPost() {
 
   document.title = 'New Post'
 
-  const { posts, setPosts, createPost } = usePosts()
+  const { posts, setPosts, createPost, newCreation, setNewCreation } = usePosts()
   const navigate = useNavigate()
+
+  const [formValues, setFormValues] = useState({
+    title: '',
+    user: '63dc12478cb6055703fca45a',
+    description: '',
+    body: '',
+    tags: [],
+    image: ''
+  })
 
   function handleImage(e) {
     setFormValues({
@@ -48,15 +58,6 @@ export function NewPost() {
     })
   }
 
-  const [formValues, setFormValues] = useState({
-    title: '',
-    author: '',
-    description: '',
-    body: '',
-    tags: [],
-    image: ''
-  })
-
   const onPostBodyChange = (value) => {
     setFormValues({
       ...formValues,
@@ -91,16 +92,20 @@ export function NewPost() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (formValues.body !== '' && formValues.title !== '' && formValues.author !== '' && formValues.description !== '' && e.key !== "Enter") {
-      const isLoading = document.getElementById('isLoading')
-      isLoading.classList.remove('isnoLoading')
-      isLoading.classList.add('isLoading')
+    if (formValues.body !== '' && formValues.title !== '' && formValues.user !== '' && formValues.description !== '' && e.key !== "Enter") {
+      setNewCreation({
+        status: false,
+        loading: true
+      })
       formValues.date = Date()
       const res = await createPost(formValues)
       if (res._id) {
+        setNewCreation({
+          status: true,
+          loading: true
+        })
         document.getElementById('loadNew2').className = 'isnoLoading'
         document.getElementById('loadingP').innerText = 'Post Created'
-        document.getElementById('loadingbtn').classList.remove('isnoLoading')
         setPosts([...posts, res])
         setFormValues({
           title: '',
@@ -116,14 +121,7 @@ export function NewPost() {
 
   return (
     <section id='section' className='section'>
-      <div id='isLoading' className='isnoLoading'>
-        <div id='isResponse' className='isResponse'></div>
-        <div id='loadNew1' className='loadingNew'>
-          <p id='loadingP'>Creating post...</p>
-          <div id='loadNew2' className="lds-ringNew"><div></div><div></div><div></div><div></div></div>
-          <button id='loadingbtn' type='button' className='loadingbtn isnoLoading' onClick={() => {navigate('/')}}>OK</button>
-        </div>
-      </div>
+      {newCreation.loading ? <Loading message={'Creating new post...'} path={`/`} /> : undefined}
       <form className='form-newPost' onSubmit={handleSubmit}>
         <div id='form-title' className='form-div-input'>
           <label htmlFor='title' className='label-required'>Title</label>
@@ -132,10 +130,10 @@ export function NewPost() {
             onBlur={handleEmpty}>
           </input>
         </div>
-        <div id="form-author" className='form-div-input'>
+        {/* <div id="form-author" className='form-div-input'>
           <label htmlFor='author' className='label-required'>Author</label>
-          <input id='author' name='author' value={formValues.author} className="form-input" autoComplete='off' placeholder='Your name' onChange={handleChange} onBlur={handleEmpty}></input>
-        </div>
+          <input id='author' name='author' value={formValues.user} className="form-input" autoComplete='off' placeholder='Your name' onChange={handleChange} onBlur={handleEmpty}></input>
+        </div> */}
         <div id="form-description" className='form-div-input'>
           <label htmlFor='description' className='label-required'>Description</label>
           <textarea

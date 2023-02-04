@@ -11,15 +11,21 @@ export function Post() {
 
   const { id } = useParams()
   const { getPost, updatePost, posts, parseDate } = usePosts()
-  const [post, setPost] = useState({})
+  const [post, setPost] = useState({
+    obtained: {},
+    username: ''
+  })
   const [loading, setLoading] = useState(false)
   const [comments, setComments] = useState([])
 
   const fetch = async (id) => {
     setLoading(true)
     const res = await getPost(id)
-    setPost(res)
-    setComments(res.comments)
+    setPost({
+      obtained: res.post,
+      username: res.username
+    })
+    setComments(res.post.comments)
     setLoading(false)
   }
 
@@ -37,38 +43,38 @@ export function Post() {
   }
 
   if(!loading){
-    post.title ? document.title = post.title : document.title = 'Posts App'
+    post.obtained.title ? document.title = post.obtained.title : document.title = 'Posts App'
     return (
       <div className="post-container">
         <div className="post-layout">
           <div className="post-layout-T-A">
             <div className="post-layout-title"
             style={{
-              backgroundImage: `url(${post.image?.url})`,
+              backgroundImage: `url(${post.obtained.image?.url})`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               height: '300px',
               width: '100%'}}
             >
-              <h2>{post.title}</h2>
+              <h2>{post.obtained.title}</h2>
             </div>
             <div className="post-layout-author">
               <div className="post-layout-user">
-                By: <VscAccount /> {post.author}
+                By: <VscAccount /> {post.username}
               </div>
               <div>
-                {parseDate(post.date)}
+                {parseDate(post.obtained.date)}
               </div>
             </div>
           </div>
           <div className="post-layout-body">
-            <ReactMarkdown>{post.body}</ReactMarkdown>
+            <ReactMarkdown>{post.obtained.body}</ReactMarkdown>
           </div>
           <div className="post-layout-tags">
-            <p>{post.tags?.length !== 0 ? 'Tags: ' : 'Without tags'}</p>
+            <p>{post.obtained.tags?.length !== 0 ? 'Tags: ' : 'No tags'}</p>
             <div className="post-layout-tags-fix">
-              {post.tags && post.tags.map(tag => {
+              {post.obtained.tags && post.obtained.tags.map(tag => {
                 return(
                   <li key={tag}>{tag}</li>
                 )
@@ -121,12 +127,11 @@ export function Post() {
               }
               if (!res) alert('There is a problem with the comment')
             }}
-  
           >
             {({ handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
                 <div className="post-comment-submit">
-                  <Field name='body' as="textarea" rows="2" placeholder='Insert new comment..' autoComplete="off"></Field>
+                  <Field name='body' as="input" placeholder='Insert new comment..' autoComplete="off"></Field>
                   <button type="submit">Send</button>
                 </div>
               </Form>

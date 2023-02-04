@@ -16,7 +16,7 @@
   gap: 10px;
 }
 
-.isLoading {
+/* .isLoading {
   visibility: visible;
 }
 
@@ -96,7 +96,7 @@
   border: 1px solid black;
   border-radius: 10px;
   background-color: #8ff48b;
-}
+} */
 
 .form-div-input {
   display: flex;
